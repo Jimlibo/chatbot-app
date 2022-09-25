@@ -76,6 +76,15 @@ body {
     flex-direction: column-reverse;
 }
 
+.close__button,
+ .close__button:hover {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 4px 4px;
+    cursor: pointer;
+}
+
 .messages__item {
     background: orange;
     max-width: 60.6%;
