@@ -14,11 +14,11 @@ class Chatbox {
     display() {
         const {activate_button, chatbox, send_button} = this.args;
         activate_button.addEventListener('click', () => this.toggleState(chatbox))   // when clicked, activate chat
-        send_button.addEventListener('click', () => this.onSendButton(chatbox))  // when clicked, send the user input
+        send_button.addEventListener('click', () => alert("send pressed"))  // when clicked, send the user input
 
-        const chat_node = chatbox.query_selector('input');  // node that listens on the chatbox window
-        chat_node.addEventListener('keyup', ({key}) => {  // instead of send button, user can also use <Enter>
-            if (key ==="Enter") {
+        const chat_node = chatbox.querySelector('input');  // node that listens on the chatbox window
+        chat_node.addEventListener("keyup", ({key}) => {  // instead of send button, user can also use <Enter>
+            if (key === "Enter") {
                 this.onSendButton(chatbox)
             }
         })
@@ -26,6 +26,7 @@ class Chatbox {
 
 
     toggleState (chatbox) {
+        alert('Jesus christ');
         this.state = !this.state   // toggle state on/off
         if (this.state) {   // if state is on, then activate (show) the chat window
             chatbox.classList.add('chatbox--active')
@@ -36,6 +37,7 @@ class Chatbox {
 
 
     onSendButton(chatbox) {   // TODO: implement functionality for when the user sends a message
+        alert("send pressed");
         var text_input = chatbox.querySelector('input');   // get the text field component from the chat window
         let text = text_input.value;
         if (text === "") {   // if text field is empty, do nothing
@@ -53,7 +55,7 @@ class Chatbox {
         }).then(
             res => res.json()   // get the response in a json format
             ).then(res => {
-                let bot_msg = {name: "Nio", message: res.response};  // create the message object with the response from the chatbot
+                let bot_msg = {name: "Nio", message: res.response};  // create the message object with the response
                 this.messages.push(bot_msg)   // add it to the list of messages
                 this.updateChat(chatbox)   // update the chat with the new messages
                 text_input.value = ''   // clear the text input field from the previous message
