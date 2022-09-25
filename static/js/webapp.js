@@ -14,7 +14,7 @@ class Chatbox {
     display() {
         const {activate_button, chatbox, send_button} = this.args;
         activate_button.addEventListener('click', () => this.toggleState(chatbox))   // when clicked, activate chat
-        send_button.addEventListener('click', () => alert("send pressed"))  // when clicked, send the user input
+        send_button.addEventListener('click', () => this.onSendButton(chatbox))  // when clicked, send the user input
 
         const chat_node = chatbox.querySelector('input');  // node that listens on the chatbox window
         chat_node.addEventListener("keyup", ({key}) => {  // instead of send button, user can also use <Enter>
@@ -26,7 +26,6 @@ class Chatbox {
 
 
     toggleState (chatbox) {
-        alert('Jesus christ');
         this.state = !this.state   // toggle state on/off
         if (this.state) {   // if state is on, then activate (show) the chat window
             chatbox.classList.add('chatbox--active')
@@ -37,7 +36,6 @@ class Chatbox {
 
 
     onSendButton(chatbox) {   // TODO: implement functionality for when the user sends a message
-        alert("send pressed");
         var text_input = chatbox.querySelector('input');   // get the text field component from the chat window
         let text = text_input.value;
         if (text === "") {   // if text field is empty, do nothing
@@ -60,6 +58,7 @@ class Chatbox {
                 this.updateChat(chatbox)   // update the chat with the new messages
                 text_input.value = ''   // clear the text input field from the previous message
         }).catch((error) =>{   // if error occured, handle it and update the chat window
+            alert("Error:" + error);
             console.error('Error occured:', error);   // print it to the console for debugging
             this.updateChat(chatbox)
             text_input.value = ''
@@ -67,20 +66,19 @@ class Chatbox {
     }
 
 
-    updateChat(chatbox) {
+    updateChat(chatbox) {  // function that updates the message environment based on the messages that have been sent
         var html_content = '';   
 
         this.messages.slice().reverse().forEach(function(item, index) {
             if (item.name === "Nio") {   // message from the chatbot
-                html += '<div class="messages__item messages__item--visitor>' + item.message + '</div>'
+                html_content += '<div class="messages__item messages__item--visitor">' + item.message + '</div>'
             } 
             else {   // message from the user
-                html += '<div class="message__item messages__item--operator>' + item.message + '</div>'
+                html_content += '<div class="message__item messages__item--operator">' + item.message + '</div>'
             }
         });
-
         const chat_env = chatbox.querySelector('.chatbox__messages');   // get the chat window space were the messages are shown
-        chat_env.innerHTML = html;   // update the contents of that space based on the new messages
+        chat_env.innerHTML = html_content;   // update the contents of that space based on the new messages
     }
 
 
