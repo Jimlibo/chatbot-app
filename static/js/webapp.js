@@ -37,7 +37,7 @@ class Chatbox {
     }
 
 
-    onSendButton(chatbox) {   // TODO: implement functionality for when the user sends a message
+    onSendButton(chatbox) {
         var text_input = chatbox.querySelector('input');   // get the text field component from the chat window
         let text = text_input.value;
         if (text === "") {   // if text field is empty, do nothing
