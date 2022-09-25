@@ -25,7 +25,7 @@ def respond():
     #bot_response = get_response(user_text)   # get the response from the chatbot
     #return_messsage = {"response": bot_response}  # create json object and return it to the user
     #return jsonify(return_messsage)
-    pass
+    return jsonify({'response': "Sorry, i am not yet trained..."})
 
 
 
