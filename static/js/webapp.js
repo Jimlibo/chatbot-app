@@ -1,12 +1,16 @@
 class Chatbox {
     constructor() {
-        activate_button: document.query_selector('.chatbox__button'),   // the button that activates the chat
-        chatbox: document.query_selector('.chatbox__support'),    // the main chat window
-        send_button: document.query_selector('.send__button')    // the send button
+        this.args = {
+            activate_button: document.querySelector('.chatbox__button'),   // the button that activates the chat
+            chatbox: document.querySelector('.chatbox__support'),   // the main chat window
+            send_button: document.querySelector('.send__button')    // the send button
+        }
+    
+        this.state = false;
+        this.messages = [];
     }
 
-    this.state = false;
-    this.messages = [];
+    
 
     display() {
         const {activate_button, chatbox, send_button} = this.args;
@@ -23,7 +27,6 @@ class Chatbox {
 
     toggleState (chatbox) {
         this.state = !this.state   // toggle state on/off
-        alert("activating chat");
         if (this.state) {   // if state is on, then activate (show) the chat window
             chatbox.classList.add('chatbox--active')
         } else {  // else, hide the chat window
@@ -37,7 +40,6 @@ class Chatbox {
 
 
 }
-
 
 const chat_window = new Chatbox();   // create a new Chatbox object that will represent the chat window
 chat_window.display();   // adds functionality to the chat window, by activating the various event listeners
