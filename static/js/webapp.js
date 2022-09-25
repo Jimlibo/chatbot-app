@@ -3,7 +3,8 @@ class Chatbox {
         this.args = {
             activate_button: document.querySelector('.chatbox__button'),   // the button that activates the chat
             chatbox: document.querySelector('.chatbox__support'),   // the main chat window
-            send_button: document.querySelector('.send__button')    // the send button
+            send_button: document.querySelector('.send__button'),   // the send button
+            cancel_button: document.querySelector('.close__button')  // the 'x' button to close the window
         }
     
         this.state = false;
@@ -12,9 +13,10 @@ class Chatbox {
 
     
     display() {
-        const {activate_button, chatbox, send_button} = this.args;
+        const {activate_button, chatbox, send_button, cancel_button} = this.args;
         activate_button.addEventListener('click', () => this.toggleState(chatbox))   // when clicked, activate chat
         send_button.addEventListener('click', () => this.onSendButton(chatbox))  // when clicked, send the user input
+        cancel_button.addEventListener('click', () => this.toggleState(chatbox))  // when clicked, close the window
 
         const chat_node = chatbox.querySelector('input');  // node that listens on the chatbox window
         chat_node.addEventListener("keyup", ({key}) => {  // instead of send button, user can also use <Enter>
