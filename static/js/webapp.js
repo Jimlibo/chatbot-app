@@ -11,7 +11,6 @@ class Chatbox {
     }
 
     
-
     display() {
         const {activate_button, chatbox, send_button} = this.args;
         activate_button.addEventListener('click', () => this.toggleState(chatbox))   // when clicked, activate chat
@@ -25,6 +24,7 @@ class Chatbox {
         })
     }
 
+
     toggleState (chatbox) {
         this.state = !this.state   // toggle state on/off
         if (this.state) {   // if state is on, then activate (show) the chat window
@@ -34,8 +34,51 @@ class Chatbox {
         }
     }
 
-    onSendButton(chatbox) {   // TODO: implement functionality for when the user sends a message
 
+    onSendButton(chatbox) {   // TODO: implement functionality for when the user sends a message
+        var text_input = chatbox.querySelector('input');   // get the text field component from the chat window
+        let text = text_input.value;
+        if (text === "") {   // if text field is empty, do nothing
+            return;
+        }
+
+        let msg = {name: "User", message: text}    // create object with message and sender
+        this.messages.push(msg)  // add the new message to the list of messages
+
+        fetch($SCRIPT_ROOT + '/predict', {    // create a post request with the data, and get the answer 
+            method: 'POST',
+            body: JSON.stringify({message: text}),
+            mode: 'cors',
+            headers: {'Content-Type': 'application/json'} 
+        }).then(
+            res => res.json()   // get the response in a json format
+            ).then(res => {
+                let bot_msg = {name: "Nio", message: res.response};  // create the message object with the response from the chatbot
+                this.messages.push(bot_msg)   // add it to the list of messages
+                this.updateChat(chatbox)   // update the chat with the new messages
+                text_input.value = ''   // clear the text input field from the previous message
+        }).catch((error) =>{   // if error occured, handle it and update the chat window
+            console.error('Error occured:', error);   // print it to the console for debugging
+            this.updateChat(chatbox)
+            text_input.value = ''
+        });
+    }
+
+
+    updateChat(chatbox) {
+        var html_content = '';   
+
+        this.messages.slice().reverse().forEach(function(item, index) {
+            if (item.name === "Nio") {   // message from the chatbot
+                html += '<div class="messages__item messages__item--visitor>' + item.message + '</div>'
+            } 
+            else {   // message from the user
+                html += '<div class="message__item messages__item--operator>' + item.message + '</div>'
+            }
+        });
+
+        const chat_env = chatbox.querySelector('.chatbox__messages');   // get the chat window space were the messages are shown
+        chat_env.innerHTML = html;   // update the contents of that space based on the new messages
     }
 
 
