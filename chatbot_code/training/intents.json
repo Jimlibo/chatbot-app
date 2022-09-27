@@ -357,6 +357,41 @@
             "responses": [
                 "I was made in 2022, if that's what you are asking!"
             ]
+        },
+        {
+            "tag": "site",
+            "patterns": [
+                "what is this place",
+                "what is this site for",
+                "why was this built?",
+                "do you know what is this webpage",
+                "jesus christ, what is this",
+                "site",
+                "webpage",
+                "what is the goal of this"
+            ],
+            "responses": [
+                "This is a site dedicated to Ferrari",
+                "This page is a tribute to Ferrari Formula 1 Team",
+                "As you can see, it is about Ferrari",
+                "All i know, is that it is meant to be something about Ferrari",
+                "I guess it shows some of Ferrari F1 team's drivers"
+            ]
+        },
+        {
+            "tag": "ferrari",
+            "patterns": [
+                "ferrari",
+                "what is ferrari",
+                "sorry, i don't know much about this team",
+                "is it about the car manufacturer",
+                "can you give me more details about ferrari",
+                "formula 1 team?",
+                "please enlighten me about ferrari"
+            ],
+            "responses": [
+                "ferrari info"
+            ]
         }
     ]
 }
