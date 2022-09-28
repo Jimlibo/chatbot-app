@@ -1,5 +1,5 @@
 """
-Created September 27 2022,
+Created September 27, 2022,
 @author: Jimlibo,
 @Description: A file with functions that can be used to deploy the chatbot model and get a response to
               a question
