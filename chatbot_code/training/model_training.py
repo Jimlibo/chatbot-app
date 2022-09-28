@@ -1,3 +1,12 @@
+"""
+Created September 28, 2022
+@author: Jimlibo
+@Description: A script that trains and saves a chatbot model using the contents of intents.json file.
+@Usage:
+    Generate a new chatbot model, saved in models/Nio.h5
+        python3 model_training.py
+"""
+
 import os
 import random
 import json

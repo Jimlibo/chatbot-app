@@ -1,8 +1,10 @@
 """
 Created September 25, 2022
 @author: Jimlibo
-
 @Description: A script that uses Flask to connect the different python scripts with the web page contents.
+@Usage:
+    Run the chatbot application
+        python3 app.py
 """
 
 import json
