@@ -113,7 +113,8 @@
                 "what is the date",
                 "date",
                 "time",
-                "tell me the date","day","what day is is today"
+                "tell me the date","day","what day is is today",
+                "what time is it"
             ],
             "responses": [
                 "Date and Time"
@@ -390,7 +391,8 @@
                 "please enlighten me about ferrari"
             ],
             "responses": [
-                "ferrari info"
+                "Scuderia Ferrari, is a Formula 1 team, created by Enzo Ferrari in 1974",
+                "It is one of the teams competing in Formula 1, considered by many the most successful team in the history of the sport"
             ]
         }
     ]
