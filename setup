@@ -7,10 +7,6 @@ echo "Installing necessary resources"
 pip install Flask tensorflow nltk
 python3 -c "import nltk; nltk.download('punkt')"
 
-# first train the model based on the contents of intents.json file
-echo "Preparing the chatbot"
-python3 chatbot_code/training/model_training.py
-
 # then start the app
 echo "Starting the app"
 python3 app.py
