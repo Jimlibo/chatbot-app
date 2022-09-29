@@ -66,8 +66,10 @@ def predict(sentence, classes, model, words):
     pred = model.predict(np.array([input_array]))[0]
     THRESHOLD = 0.25   # error threshold, if prediction is less than that, then deny it
     results = [[i, percent] for i, percent in enumerate(pred) if percent > THRESHOLD]
+    if len(results) == 0:   # if list is empty --> no class had percentage > threshold
+      return None
     results.sort(key=lambda x: x[1], reverse=True)   # sort based on [percentage of each class
-    return classes[results[0][0]] if results[0] is not None else None   # return the class that was mainly predicted
+    return classes[results[0][0]]  # return the class that was mainly predicted
 
 
 def get_response(text, json_intents, classes, words, model):
