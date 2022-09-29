@@ -2,6 +2,7 @@
 set +x
 set -e
 
+
 # get the required resources
 echo "Installing necessary resources"
 pip install Flask tensorflow nltk
