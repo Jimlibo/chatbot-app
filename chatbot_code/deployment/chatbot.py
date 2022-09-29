@@ -11,10 +11,6 @@ import numpy as np
 from nltk.stem import WordNetLemmatizer
 from datetime import datetime
 
-# TODO: add functionality for correcting the model
-# TODO: perhaps add cli option and use argparse
-# TODO: add function to get information about Ferrari F1 team from wikipedia or other sources
-
 
 def get_datetime():
     """
