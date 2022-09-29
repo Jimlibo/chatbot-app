@@ -6,7 +6,7 @@ set -e
 # get the required resources
 echo "Installing necessary resources"
 pip install Flask tensorflow nltk
-python3 -c "import nltk; nltk.download('punkt')"
+python3 -c "import nltk; nltk.download('punkt'); nltk.download('wordnet'); nltk.download('omw-1.4')"
 
 # then start the app
 echo "Starting the app"
