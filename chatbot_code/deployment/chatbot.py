@@ -9,9 +9,24 @@ import random
 import nltk
 import numpy as np
 from nltk.stem import WordNetLemmatizer
+from datetime import datetime
 
 # TODO: add functionality for correcting the model
 # TODO: perhaps add cli option and use argparse
+# TODO: add function to get information about Ferrari F1 team from wikipedia or other sources
+
+
+def get_datetime():
+    """
+    A function that gets the current datetime and returns it as a string containing date and time (only hours
+    and minutes)
+    :return: a string with information about the current date and time
+    """
+    cur_datetime = datetime.now()
+    cur_time = str(cur_datetime.time())[0:5]   # get only hours and minutes of current time
+    cur_date = str(cur_datetime).split()[0]    # get only the date part of current datetime
+    final_string = "It's " + cur_date + ", time " + cur_time
+    return final_string
 
 
 def clean_sentence(s):
@@ -71,7 +86,10 @@ def get_response(text, json_intents, classes, words, model):
     :return: a string, representing the response to the parameter text
     """
     tag = predict(text, classes, model, words)
-    print(tag)
+    if tag == "datetime":   # if chatbot is asked about the date or the time, return the current datetime
+        print(get_datetime())
+        return get_datetime()
+
     result = "I am sorry, but I can't understand you..."
     for i in json_intents['intents']:
         if i['tag'] == tag:    # find the category of the pattern
