@@ -63,7 +63,7 @@ def predict(sentence, classes, model, words):
     :return: a string, representing the class that the sentence belongs to
     """
     input_array = input_create(sentence, words)
-    pred = model.predict(np.array([input_array]))[0]
+    pred = model.predict(np.array([input_array]), verbose=0)[0]
     THRESHOLD = 0.25   # error threshold, if prediction is less than that, then deny it
     results = [[i, percent] for i, percent in enumerate(pred) if percent > THRESHOLD]
     if len(results) == 0:   # if list is empty --> no class had percentage > threshold
